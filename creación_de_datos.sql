@@ -80,3 +80,7 @@ insert into ListaDePrecio values (1, '20191026', '20191130');
  insert into SeLeAdjudica values (11, 72, 1);
  insert into SeLeAdjudica values (12, 45, 1);
  insert into SeLeAdjudica values (13, 115, 1);
+
+ insert into Turno values (1, 'Mañana');
+ insert into Turno values (2, 'Tarde');
+ insert into Turno values (3, 'Noche');
