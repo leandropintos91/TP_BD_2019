@@ -48,6 +48,12 @@ insert into Cliente values (20401587432, 'Norberto Melián', 'nmelian@hotmail.com
 insert into Cliente values (20325985643, 'Alicia Ferreira', 'aferreira@yahoo.com');
 insert into Cliente values (20125897444, 'Micaela Nievas', 'mnievas@gmail.com');
 
+insert into Telefono values (20359517530, 46975858);
+insert into Telefono values (20398754121, 49685214);
+insert into Telefono values (20401587432, 43235474);
+insert into Telefono values (20325985643, 49895353);
+insert into Telefono values (20125897444, 47415252);
+
 insert into Descuento values (1, 9);
 insert into Descuento values (2, 15);
 
