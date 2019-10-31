@@ -111,7 +111,7 @@ insert into Producto values (11, 'Galletitas Pitusas');
 insert into Producto values (12, 'Manaos Uva 1,5 L');
 insert into Producto values (13, 'Fernet Vittone 750 cc.');
 
-insert into ListaDePrecio values (1, '20191026', '20191130');
+insert into ListaDePrecio values (1, '20190101', '20191231');
 
  insert into SeLeAdjudica values (1, 32, 1);
  insert into SeLeAdjudica values (2, 45, 1);
@@ -146,6 +146,7 @@ insert into Compra values (9,20359517530,1,1,1, 1, '20191027', 1, 2369);
 insert into Compra values (10,20359517530,1,1,1, 1, '20191026', 1, 3354);
 insert into Compra values (11,20359517530,1,1,1, 1, '20191030', 1, 9241);
 insert into Compra values (12,20359517530,1,1,1, 1, '20191028', 2, 10214);
+insert into Compra values (13,20359517530,1,1,1, 1, '20191028', 1, 11000);
 
 insert into Conlleva values (1, 1, 1);
 insert into Conlleva values (1, 2, 3);
@@ -191,3 +192,86 @@ insert into Asignacion values('20191029', 4, 1, 1, 3);
 insert into Asignacion values('20191030', 2, 1, 1, 1);
 insert into Asignacion values('20191030', 3, 1, 1, 2);
 insert into Asignacion values('20191030', 4, 1, 1, 3);
+
+
+
+-- En este bloque falta llenar Conlleva pero hay que modificarla.
+-- Que Conlleva tenga los mismos datos que Compra es redundante.
+insert into Compra values (14,20359517530,1,1,1, 1, '20190901', 1, 2301);
+insert into Compra values (15,20359517530,1,1,1, 1, '20190901', 1, 5260);
+insert into Compra values (16,20359517530,1,1,1, 1, '20190902', 1, 421);
+insert into Compra values (17,20359517530,1,1,1, 1, '20190902', 1, 789);
+insert into Compra values (17,20359517530,1,1,1, 1, '20190903', 1, 6320);
+insert into Compra values (19,20359517530,1,1,1, 1, '20190903', 1, 144);
+insert into Compra values (20,20359517530,1,1,1, 1, '20190904', 1, 855);
+insert into Compra values (21,20359517530,1,1,1, 1, '20190904', 1, 741);
+insert into Compra values (22,20359517530,1,1,1, 1, '20190905', 1, 2369);
+insert into Compra values (23,20359517530,1,1,1, 1, '20190905', 1, 3354);
+insert into Compra values (24,20359517530,1,1,1, 1, '20190904', 1, 9241);
+insert into Compra values (25,20359517530,1,1,1, 1, '20190903', 2, 10214);
+insert into Compra values (26,20359517530,1,1,1, 1, '20190902', 1, 11000);
+
+insert into Conlleva values (14, 1, 1);
+insert into Conlleva values (14, 2, 3);
+insert into Conlleva values (15, 1, 1);
+insert into Conlleva values (15, 2, 1);
+insert into Conlleva values (16, 2, 5);
+insert into Conlleva values (16, 1, 1);
+insert into Conlleva values (17, 2, 1);
+insert into Conlleva values (17, 1, 9);
+insert into Conlleva values (18, 2, 1);
+insert into Conlleva values (18, 1, 1);
+insert into Conlleva values (19, 2, 1);
+insert into Conlleva values (19, 1, 7);
+insert into Conlleva values (20, 2, 1);
+insert into Conlleva values (20, 9, 900);
+insert into Conlleva values (21, 2, 2);
+insert into Conlleva values (21, 1, 1);
+insert into Conlleva values (22, 2, 1);
+insert into Conlleva values (22, 1, 8);
+insert into Conlleva values (23, 2, 1);
+insert into Conlleva values (23, 1, 1);
+insert into Conlleva values (24, 2, 4);
+insert into Conlleva values (24, 1, 2);
+insert into Conlleva values (25, 2, 2);
+insert into Conlleva values (25, 1, 3);
+insert into Conlleva values (26, 2, 2);
+insert into Conlleva values (26, 1, 3);
+
+insert into Asignacion values('20190901', 1, 1, 1, 1);
+insert into Asignacion values('20190901', 4, 1, 1, 2);
+insert into Asignacion values('20190901', 5, 1, 1, 3);
+
+insert into Asignacion values('20190902', 1, 1, 1, 1);
+insert into Asignacion values('20190902', 4, 1, 1, 2);
+insert into Asignacion values('20190902', 5, 1, 1, 3);
+
+insert into Asignacion values('20190903', 1, 1, 1, 1);
+insert into Asignacion values('20190903', 2, 1, 1, 2);
+insert into Asignacion values('20190903', 5, 1, 1, 3);
+
+insert into Asignacion values('20190904', 2, 1, 1, 1);
+insert into Asignacion values('20190904', 5, 1, 1, 2);
+insert into Asignacion values('20190904', 1, 1, 1, 3);
+
+insert into Asignacion values('20190905', 2, 1, 1, 1);
+insert into Asignacion values('20190905', 5, 1, 1, 2);
+insert into Asignacion values('20190905', 1, 1, 1, 3);
+
+insert into Asignacion values('20190906', 4, 1, 1, 1);
+insert into Asignacion values('20190906', 5, 1, 1, 2);
+insert into Asignacion values('20190906', 3, 1, 1, 3);
+
+insert into Asignacion values('20190907', 4, 1, 1, 1);
+insert into Asignacion values('20190907', 5, 1, 1, 2);
+insert into Asignacion values('20190907', 3, 1, 1, 3);
+
+insert into Asignacion values('20190908', 1, 1, 1, 1);
+insert into Asignacion values('20190908', 5, 1, 1, 2);
+insert into Asignacion values('20190908', 3, 1, 1, 3);
+
+insert into Asignacion values('20190909', 4, 1, 1, 1);
+insert into Asignacion values('20190909', 5, 1, 1, 2);
+insert into Asignacion values('20190909', 3, 1, 1, 3);
+
+delete Asignacion where Fecha = '20190909'

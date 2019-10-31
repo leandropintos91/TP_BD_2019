@@ -1,3 +1,11 @@
+create or alter view asignaciones_por_empleado
+as
+select pe.Legajo as Legajo, min(MONTH(a.Fecha)) as mes, min(YEAR(a.Fecha)) as anio, count(*) as cantidad from Asignacion as a
+inner join Personal as pe on a.Legajo = pe.Legajo
+group by pe.Legajo, MONTH(a.Fecha), YEAR(a.Fecha);
+
+go;
+
 create or alter procedure empleados_mayores_ventas(@anio int, @mes int)
 AS
 BEGIN
@@ -16,6 +24,13 @@ inner join Propio as pr on
 
 inner join Personal as pe on
 	pr.Legajo = pe.Legajo
+
+where pe.Legajo in (
+	select ca.Legajo from asignaciones_por_empleado as ca where ca.cantidad = (
+		select min(cantidad) from asignaciones_por_empleado as ca where ca.mes = @mes and ca.anio = @anio
+		)
+		and ca.mes = @mes and ca.anio = @anio
+	)
 END
 
 -- exec empleados_mayores_ventas @anio = 2019, @mes = 10;
@@ -46,26 +61,39 @@ group by c.IdCompra;
 
 GO;
 
+create or alter view suma_ventas_empleado_por_mes
+as
+select pe.Legajo as legajo, MIN(YEAR(v.fecha)) as anio, min(MONTH(v.fecha)) as mes, SUM(v.montoTotal) as sumatoria from Personal as pe
+inner join Asignacion as a on
+pe.Legajo = a.Legajo
+inner join Venta as v on
+a.IdTurno = v.IdTurno and
+a.NroCaja = v.NroCaja and
+a.NroLocal = v.NroLocal and
+a.Fecha = v.fecha
+group by pe.Legajo, YEAR(v.fecha), MONTH(v.fecha);
+
+go;
+
 create or alter procedure empleados_mayores_ventas_alternativa(@anio int, @mes int)
 AS
 BEGIN
-select pe.*, pr.* from Asignacion as a
-inner join 
-	(select v.NroLocal as NroLocal, v.fecha as fecha, v.NroCaja as NroCaja, v.IdTurno as turno, v.montoTotal as montoTotal from Venta as v
-	where v.montoTotal = 
-		(select max(montoTotal) from Venta as v where MONTH(v.fecha) = @mes and YEAR(v.fecha) = @anio)) as ventasMayores on
-	a.NroLocal = ventasMayores.NroLocal and
-	a.Fecha = ventasMayores.fecha and
-	a.NroCaja = ventasMayores.NroCaja and
-	a.IdTurno = ventasMayores.turno
-
-inner join Propio as pr on
-	a.Legajo = pr.Legajo
-
-inner join Personal as pe on
-	pr.Legajo = pe.Legajo
+select * from Personal as pe
+where pe.Legajo = (
+		select ca.Legajo from asignaciones_por_empleado as ca where ca.cantidad = (
+			select min(cantidad) from asignaciones_por_empleado as ca where ca.mes = @mes and ca.anio = @anio
+			)
+			and ca.mes = @mes and ca.anio = @anio
+	)
+	and
+	pe.Legajo = (
+		select suma.Legajo from suma_ventas_empleado_por_mes as suma 
+		where suma.sumatoria = (
+			select max(suma.sumatoria) from suma_ventas_empleado_por_mes as suma where suma.mes = @mes and suma.anio = @anio
+		)
+	)
 END
 
 go;
 
--- exec empleados_mayores_ventas_alternativa @anio = 2019, @mes = 10;
+-- exec empleados_mayores_ventas_alternativa @anio = 2019, @mes = 9;
